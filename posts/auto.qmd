@@ -1,9 +1,15 @@
 ---
-title: "Untitled"
-output: html_document
+title: "autoendoding"
+author: "Kione Kim"
 date: "2023-10-05"
-jupyter: python3
+categories: [autoencoding]
 ---
+
+This is a post with executable code.
+
+``` python
+{python}
+```
 
 ```{python}
 import pandas as pd
