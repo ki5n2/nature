@@ -2,8 +2,11 @@
 title: "Untitled"
 output: html_document
 date: "2023-10-05"
+excute:
+  echo: false
+jupyter: python3
 ---
 
 ```{'''{python}
-# .py
+# autoendodi.py
 ```
