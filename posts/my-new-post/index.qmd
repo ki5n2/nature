@@ -1,0 +1,9 @@
+---
+title: "My new post"
+author: "Kione KIm"
+date: "2023-10-05"
+categories: [mining]
+image: "cute.jfif"
+---
+
+This is my new post. I deleted the old text that was here, and I wrote new text instead.
