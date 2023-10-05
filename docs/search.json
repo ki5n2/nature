@@ -18,14 +18,14 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "nature blog"
+    "text": "가상환경\n가상환경 버전: python=3.10\n가상환경 삭제: conda remove –name [~] –all\npytorch 설치: conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch\n\n\nnature blog"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "nature",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nOct 5, 2023\n\n\nMy new post\n\n\nKione KIm\n\n\n\n\nOct 5, 2023\n\n\nPost With Code\n\n\nHarlow Malloc\n\n\n\n\nOct 2, 2023\n\n\nWelcome To My Blog\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nOct 5, 2023\n\n\nMy new post\n\n\nKione KIm\n\n\n\n\nOct 5, 2023\n\n\nPost With Code\n\n\nHarlow Malloc\n\n\n\n\nOct 2, 2023\n\n\nWelcome To My Blog\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/post-with-code/index.html",

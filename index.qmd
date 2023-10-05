@@ -7,8 +7,8 @@ listing:
     - "title desc"
   type: table
   categories: true
-  sort-ui: false
-  filter-ui: false
+  sort-ui: [title, date]
+  filter-ui: [title, date]
 page-layout: full
 title-block-banner: true
 ---

@@ -4,6 +4,10 @@ project:
 
 website:
   title: "nature"
+  
+  page-footer:
+      border: true
+  
   navbar:
     right:
       - about.qmd
@@ -19,6 +23,9 @@ format:
   html:
     theme: cosmo
     css: styles.css
+    toc: true
+    code-fold: false
+    code-line-numbers: true
 
 editor: visual
 
