@@ -8,6 +8,12 @@ website:
       - about.qmd
       - icon: github
         href: https://github.com/ki5n2/nature
+
+  sidebar:
+    style: "docked"
+    search: true
+    contents: auto
+    
 format:
   html:
     theme: cosmo
