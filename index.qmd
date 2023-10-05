@@ -2,11 +2,13 @@
 title: "nature"
 listing:
   contents: posts
-  sort: "date desc"
+  sort: 
+    -"date desc"
+    - "title desc"
   type: table
   categories: true
   sort-ui: false
   filter-ui: false
 page-layout: full
-title-block-banner: false
+title-block-banner: true
 ---
