@@ -7,6 +7,6 @@ excute:
 jupyter: python3
 ---
 
-```{'''{python}
-# autoendodi.py
+```{python}
+# .py
 ```
