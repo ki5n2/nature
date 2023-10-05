@@ -1,6 +1,6 @@
 ---
 title: "About"
-image: profile.jpg
+image: blog_title.jfif
 about:
   template: jolla
   links:
@@ -12,8 +12,7 @@ about:
       href: https://linkedin.com
     - icon: github
       text: Github
-      href: https://github.com
-
+      href: https://github.com/ki5n2/nature
 ---
 
-About this blog
+nature blog
