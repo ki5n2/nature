@@ -63,3 +63,43 @@ test_loader = torch.utils.data.DataLoader(
     shuffle     = False
 )
 ```
+
+```{python}
+
+parser = argparse.ArgumentParser(description='parser for argparse test')
+
+parser.add_argument('--input_dim', type=int, default=28*28)
+parser.add_argument('--learning_rate', type=float, default=0.001)
+parser.add_argument('--num_epoch', type=int, default=10)
+parser.add_argument('--enc_hidden_dim', type=str, default='256,128,64,32,3')
+parser.add_argument('--dec_hidden_dim', type=str, default='32,64,128,256')
+
+
+if 'ipykernel_launcher' in sys.argv[0]:
+    sys.argv = [sys.argv[0]]
+
+args = parser.parse_args()
+
+enc_hidden_dim = args.enc_hidden_dim.split(',')
+dec_hidden_dim = args.dec_hidden_dim.split(',')
+args.enc_hidden_dim_list = []
+args.dec_hidden_dim_list = []
+
+args.enc_hidden_dim_list.append(args.input_dim)
+
+for i in enc_hidden_dim:
+    args.enc_hidden_dim_list.append(int(i))
+
+args.enc_hidden_dim_list
+
+args.dec_hidden_dim_list.append(args.enc_hidden_dim_list[-1])
+
+for i in dec_hidden_dim:
+    args.dec_hidden_dim_list.append(int(i))
+
+args.dec_hidden_dim_list.append(args.input_dim)
+
+args.dec_hidden_dim_list
+
+args
+```
