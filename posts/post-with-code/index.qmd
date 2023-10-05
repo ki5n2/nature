@@ -8,6 +8,155 @@ image: "image.jpg"
 
 This is a post with executable code.
 
-```{R}
-1 + 1
+```{python}
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import argparse
+import sys
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torchvision import datasets, transforms
+from torch.utils.data import Dataset
+from torch.utils.data import DataLoader
+from torchinfo import summary
+from mpl_toolkits.mplot3d import Axes3D
+```
+
+```{python}
+
+data_root = './data'
+
+batch_size = 32
+
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize(0.5, 0.5),
+    transforms.Lambda(lambda x: x.view(-1)),
+])
+
+trainset = datasets.MNIST(
+    root        = data_root, 
+    train       = True, 
+    download    = True,
+    transform   = transform
+)
+
+testset = datasets.MNIST(
+    root        = data_root, 
+    train       = False, 
+    download    = False,
+    transform   = transform
+)
+
+train_loader = torch.utils.data.DataLoader(
+    dataset     = trainset,
+    batch_size  = batch_size,
+    shuffle     = True
+)
+
+test_loader = torch.utils.data.DataLoader(
+    dataset     = testset,
+    batch_size  = batch_size,
+    shuffle     = False
+)
+```
+
+```{python}
+
+parser = argparse.ArgumentParser(description='parser for argparse test')
+
+parser.add_argument('--input_dim', type=int, default=28*28)
+parser.add_argument('--learning_rate', type=float, default=0.001)
+parser.add_argument('--num_epoch', type=int, default=10)
+parser.add_argument('--enc_hidden_dim', type=str, default='256,128,64,32,3')
+parser.add_argument('--dec_hidden_dim', type=str, default='32,64,128,256')
+
+
+if 'ipykernel_launcher' in sys.argv[0]:
+    sys.argv = [sys.argv[0]]
+
+args = parser.parse_args()
+
+enc_hidden_dim = args.enc_hidden_dim.split(',')
+dec_hidden_dim = args.dec_hidden_dim.split(',')
+args.enc_hidden_dim_list = []
+args.dec_hidden_dim_list = []
+
+args.enc_hidden_dim_list.append(args.input_dim)
+
+for i in enc_hidden_dim:
+    args.enc_hidden_dim_list.append(int(i))
+
+args.enc_hidden_dim_list
+
+args.dec_hidden_dim_list.append(args.enc_hidden_dim_list[-1])
+
+for i in dec_hidden_dim:
+    args.dec_hidden_dim_list.append(int(i))
+
+args.dec_hidden_dim_list.append(args.input_dim)
+
+args.dec_hidden_dim_list
+
+args
+```
+
+```{python}
+
+class midlayer(nn.Module):
+    def __init__(self, input_dim, hidden_dim):
+        super(midlayer, self).__init__()
+        self.fc_layer = nn.Linear(input_dim, hidden_dim)
+        self.activation = nn.LeakyReLU()
+    def forward(self, x):
+        out = self.fc_layer(x)
+        out = self.activation(out)
+        return out
+
+class Encoder(nn.Module):
+    def __init__(self, hidden_dim_list):
+        super(Encoder, self).__init__()
+        
+        layer_list = []
+        for i in range(len(hidden_dim_list)-1):
+            layer_list.append(midlayer(hidden_dim_list[i], hidden_dim_list[i+1]))
+        
+        self.fc_layer = nn.Sequential(*layer_list)
+        
+    def forward(self, x):
+        out = self.fc_layer(x)
+
+        return out
+
+class Decoder(nn.Module):
+    def __init__(self, hidden_dim_list):
+        super().__init__()
+        
+        layer_list = []
+        for i in range(len(hidden_dim_list)-2):
+            layer_list.append(midlayer(hidden_dim_list[i], hidden_dim_list[i+1]))
+        
+        layer_list.append(nn.Sequential(nn.Linear(hidden_dim_list[i+1], hidden_dim_list[i+2]), nn.Sigmoid()))
+        self.fc_layer = nn.Sequential(*layer_list)
+    
+    def forward(self, x):
+        out = self.fc_layer(x)
+
+        return out
+
+class Autoencoder(nn.Module):
+    def __init__(self, enc_hidden_dim_list, dec_hidden_dim_list):
+        super().__init__()
+
+        self.encoder = Encoder(enc_hidden_dim_list)
+        self.decoder = Decoder(dec_hidden_dim_list)
+
+    def forward(self, x):
+        out = self.encoder(x)
+        out = self.decoder(out)
+
+        return out
 ```
