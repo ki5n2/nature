@@ -4,10 +4,7 @@ project:
 
 website:
   title: "nature"
-  
-  page-footer:
-      border: true
-  
+
   navbar:
     right:
       - about.qmd
