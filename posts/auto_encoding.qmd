@@ -1,11 +1,9 @@
 ---
-title: "autoendoder"
-author: "Kione Kim"
-date: "2023-10-05"
-categories: [autoencoding]
+title: "auto_encoding"
+date: "2023-10-06"
+categories: [code]
+format: html
 ---
-
-This is a post with executable code.
 
 ```{python}
 
@@ -25,7 +23,6 @@ from mpl_toolkits.mplot3d import Axes3D
 ```
 
 ```{python}
-
 data_root = './data'
 
 batch_size = 32
@@ -64,7 +61,6 @@ test_loader = torch.utils.data.DataLoader(
 ```
 
 ```{python}
-
 parser = argparse.ArgumentParser(description='parser for argparse test')
 
 parser.add_argument('--input_dim', type=int, default=28*28)
@@ -104,7 +100,6 @@ args
 ```
 
 ```{python}
-
 class midlayer(nn.Module):
     def __init__(self, input_dim, hidden_dim):
         super(midlayer, self).__init__()
@@ -161,7 +156,6 @@ class Autoencoder(nn.Module):
 ```
 
 ```{python}
-
 autoencoder = Autoencoder(args.enc_hidden_dim_list, args.dec_hidden_dim_list)
 autoencoder = autoencoder.to(device)
 
@@ -170,7 +164,6 @@ optimizer = optim.Adam(autoencoder.parameters(), lr=0.001)
 ```
 
 ```{python}
-
 def train_autoencoder(autoencoder, criterion, optimizer, num_epochs):
     train_loss_arr = []
     test_loss_arr = []
@@ -236,7 +229,6 @@ def visualize_images(original, reconstructed, n=10):
 ```
 
 ```{python}
-
 train_autoencoder(autoencoder, criterion, optimizer, num_epochs=args.num_epoch)
 
 data_iter = iter(test_loader)
