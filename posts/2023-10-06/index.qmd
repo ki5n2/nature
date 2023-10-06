@@ -1,0 +1,8 @@
+---
+title: "encoder"
+author: "Kione Kim"
+date: "2023-10-06"
+categories: [code]
+---
+
+This is the first code
