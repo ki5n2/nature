@@ -12,6 +12,8 @@ from torch.utils.data import DataLoader
 from torchinfo import summary
 from mpl_toolkits.mplot3d import Axes3D
 
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+print(device)
 
 data_root = './data'
 
@@ -307,9 +309,6 @@ class Autoencoder(nn.Module):
         out = self.encoder(x)
         out = self.decoder(out)
         return out
-
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-print(device)
 
 autoencoder = Autoencoder(args.enc_hidden_dim_list, args.dec_hidden_dim_list)
 autoencoder = autoencoder.to(device)
